@@ -12,6 +12,9 @@ def convert_cow(path: str):
     for i_frame, frame in enumerate(frames):
         new_frame = []
 
+        if frame is None:
+            break;
+
         for x in frame:
             new_x = []
             for i, y in enumerate(x):
@@ -37,7 +40,7 @@ def convert_cow(path: str):
         print('done: ' + str(i_frame))
 
     fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
-    video = cv2.VideoWriter('video.mp4', fourcc, 20.0, (640, 480))
+    video = cv2.VideoWriter('video.mp4', fourcc, 30.0, (video_size['width'], video_size['height']))
 
     for frame in new_frames:
         video.write(frame)
