@@ -5,7 +5,7 @@ from statics import video_size
 import copy
 
 def convert_cow(path: str):
-    sample_div = 5
+    sample_div = 2
 
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     video = cv2.VideoWriter('video.avi', fourcc, 30.0, (video_size['width'], video_size['height']))
@@ -20,7 +20,7 @@ def convert_cow(path: str):
         for x in frame:
             new_x = []
             for i, y in enumerate(x):
-                if i % sample_div:
+                if i % sample_div == 0:
                     new_x.append(y)
 
             new_frame.append(new_x)
@@ -38,19 +38,20 @@ def convert_cow(path: str):
                 new_frame[xi].insert(0, y)
 
         print(np.array(new_frame).shape)
-        changed_frame = change_color(new_frame)
-        video.write(np.array(changed_frame))
+        changed_frame = change_color(np.array(new_frame))
+        video.write(changed_frame)
         print('done: ' + str(i_frame))
 
     video.release()
 
 def change_color(frame):
-    img_colors = cv2.split(frame)
-
-	# img_colors 0... blue, 1 ... green, 2 ... red
-    subarr = np.array([[40]*height]*width)
-    img_colors[1] = np.abs(img_colors[1] - subarr)
-    img_colors[0] = np.abs(img_colors[0] - subarr)
-
-    frame = cv2.merge((img_colors[0].astype(np.uint8), img_colors[1].astype(np.uint8), img_colors[2]))
     return frame
+    # img_colors = cv2.split(frame)
+
+	# # img_colors 0... blue, 1 ... green, 2 ... red
+    # subarr = np.array([[40]*video_size['height']]*video_size['width'])
+    # img_colors[1] = np.abs(img_colors[1] - subarr)
+    # img_colors[0] = np.abs(img_colors[0] - subarr)
+
+    # frame = cv2.merge((img_colors[0].astype(np.uint8), img_colors[1].astype(np.uint8), img_colors[2]))
+    # return frame
