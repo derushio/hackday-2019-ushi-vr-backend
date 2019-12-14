@@ -1,16 +1,5 @@
 import cv2;
+from video_loader import video_loader
 
 def convert_cow(path: str):
-    cap = cv2.VideoCapture(path)
-
-    frames = []
-
-    ret, frame = cap.read()
-    frames.append(frame);
-    while frame is not None:
-        ret, frame = cap.read()
-        frames.append(frame)
-
-    cap.release()
-
-    print(len(frames))
+    frames = video_loader(path);
