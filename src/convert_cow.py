@@ -5,7 +5,7 @@ from statics import video_size
 import copy
 
 def convert_cow(path: str):
-    sample_div = 3
+    sample_div = 5
 
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     video = cv2.VideoWriter('video.avi', fourcc, 30.0, (video_size['width'], video_size['height']))
