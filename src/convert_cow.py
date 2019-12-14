@@ -7,11 +7,10 @@ def convert_cow(path: str):
 
     ret, frame = cap.read()
     frames.append(frame);
-    while frame:
+    while frame is not None:
         ret, frame = cap.read()
         frames.append(frame)
 
     cap.release()
 
     print(len(frames))
-    print('hoge')
