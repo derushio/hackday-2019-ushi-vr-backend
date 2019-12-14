@@ -38,7 +38,19 @@ def convert_cow(path: str):
                 new_frame[xi].insert(0, y)
 
         print(np.array(new_frame).shape)
-        video.write(np.array(new_frame))
+        changed_frame = change_color(new_frame)
+        video.write(np.array(changed_frame))
         print('done: ' + str(i_frame))
 
     video.release()
+
+def change_color(frame):
+    img_colors = cv2.split(frame)
+
+	# img_colors 0... blue, 1 ... green, 2 ... red
+    subarr = np.array([[40]*height]*width)
+    img_colors[1] = np.abs(img_colors[1] - subarr)
+    img_colors[0] = np.abs(img_colors[0] - subarr)
+
+    frame = cv2.merge((img_colors[0].astype(np.uint8), img_colors[1].astype(np.uint8), img_colors[2]))
+    return frame
