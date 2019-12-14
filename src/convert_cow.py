@@ -37,7 +37,7 @@ def convert_cow(path: str):
             for y in reversed(x[x_len:]):
                 new_frame[xi].insert(0, y)
 
-        video.write(new_frame)
+        video.write(np.array(new_frame))
         print('done: ' + str(i_frame))
 
     video.release()
