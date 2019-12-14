@@ -18,6 +18,11 @@ def convert_cow(path: str):
 
             new_frame.append(new_x)
 
+        for x in new_frame:
+            x_len = len(x) - 1
+            for y in x[0:x_len]:
+                x.append(y)
+
         print(np.array(new_frame).shape)
         cv2.imshow('new_frame', np.array(new_frame))
         cv2.waitKey(0)
