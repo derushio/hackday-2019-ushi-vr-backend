@@ -1,12 +1,7 @@
 import cv2;
+from convert_cow import convert_cow
 
-cap = cv2.VideoCapture('./data/video.mp4')
-ret, frame = cap.read()
-print(frame)
+def main():
+    convert_cow('/home/derushio/Developments/2019/private/hackday/hackday-2019-ushi-vr-backend/data/video.mp4')
 
-# while(cap.isOpened()):
-    # cv2.imshow('frame', frame)
-    # if cv2.waitKey(1) & 0xFF == ord('q'):
-        # break
-
-cap.release()
+main()
