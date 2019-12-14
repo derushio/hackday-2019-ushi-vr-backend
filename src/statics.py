@@ -1,4 +1,4 @@
 video_size = {
-    'width': 720,
-    'height': 480
+    'width': 3040,
+    'height': 1520,
 }
