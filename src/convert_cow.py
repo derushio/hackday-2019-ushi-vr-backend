@@ -7,8 +7,10 @@ import copy
 def convert_cow(path: str):
     sample_div = 2
 
+    fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
+    video = cv2.VideoWriter('video.mp4', fourcc, 30.0, (video_size['width'], video_size['height']))
+
     frames = video_loader(path);
-    new_frames = []
     for i_frame, frame in enumerate(frames):
         new_frame = []
 
@@ -35,14 +37,7 @@ def convert_cow(path: str):
             for y in reversed(x[x_len:]):
                 new_frame[xi].insert(0, y)
 
-        new_frames.append(new_frame)
-
+        video.write(new_frame)
         print('done: ' + str(i_frame))
-
-    fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
-    video = cv2.VideoWriter('video.mp4', fourcc, 30.0, (video_size['width'], video_size['height']))
-
-    for frame in new_frames:
-        video.write(frame)
 
     video.release()
