@@ -25,3 +25,11 @@ def convert_cow(path: str):
 
         new_frames.append(new_frame)
         break;
+
+def create_image(path: str):
+    frame = get_1frame(path)
+
+    print(type(frame))
+    # cv2.imshow('matrix', frame)
+    # cv2.waitKey(1)
+    cv2.imwrite('./cow_image.jpg', frame)
