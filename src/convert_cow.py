@@ -5,10 +5,10 @@ from statics import video_size
 import copy
 
 def convert_cow(path: str):
-    sample_div = 2
+    sample_div = 3
 
-    fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
-    video = cv2.VideoWriter('video.mp4', fourcc, 30.0, (video_size['width'], video_size['height']))
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    video = cv2.VideoWriter('video.avi', fourcc, 30.0, (video_size['width'], video_size['height']))
 
     frames = video_loader(path);
     for i_frame, frame in enumerate(frames):
@@ -37,6 +37,7 @@ def convert_cow(path: str):
             for y in reversed(x[x_len:]):
                 new_frame[xi].insert(0, y)
 
+        print(np.array(new_frame).shape)
         video.write(np.array(new_frame))
         print('done: ' + str(i_frame))
 
